@@ -54,5 +54,14 @@
   /images/watermark.png
 " />
 
+<script type="text/javascript">
+$(document).ready(function() {
+    var div = $('#logon_page');
+
+    if (div.length && div.text())
+        div.prependTo($('#login-form div.box-inner')).show();
+});
+</script>
+
 </body>
 </html>
