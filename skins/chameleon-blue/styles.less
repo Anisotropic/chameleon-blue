@@ -495,6 +495,15 @@ html.mozilla #mailboxlist > li:first-child,
 	top: 80px;
 }
 
+.boxcontent .boxwarning {
+	padding: 6px 80px 6px 6px;
+	min-height: 70px;
+	background: url(images/spanner.png) @light-color right center no-repeat;
+	border: none;
+	color: darken(@main-color, 25%);
+	font-size: 12pt;
+}
+
 /** font/text styles **/
 
 h1.boxtitle,
@@ -3187,44 +3196,38 @@ div.messagetasklinks::before {
 	background-position: center -690px;
 }
 
-#files-folder-list ul li span.name,
-#files-folder-list ul li.mailbox.collection span.name {
+#files-folder-list ul li .name,
+#files-folder-list ul li.mailbox.collection .name {
 	background-image: url(images/listicons.png);
 	color: @text-color;
-	line-height: 29px;
-	padding: 7px 8px 7px 35px;
 }
 
-#files-folder-list ul li.virtual span.name {
+#files-folder-list ul li.virtual .name {
 	color: #aaa;
 }
 
-#files-folder-list ul li.mailbox.collection.audio span.name,
-#files-folder-list ul li.mailbox.collection.audio.selected span.name {
-	background-position: 7px -2360px;
+#files-folder-list ul li.mailbox.collection.selected .name {
+	color: #fff;
 }
 
-#files-folder-list ul li.mailbox.collection.video span.name,
-#files-folder-list ul li.mailbox.collection.video.selected span.name {
-	background-position: 7px -2384px;
+#files-folder-list ul li.mailbox.collection.audio .name,
+#files-folder-list ul li.mailbox.collection.audio.selected .name {
+	background-position: 7px -2363px;
 }
 
-#files-folder-list ul li.mailbox.collection.image span.name,
-#files-folder-list ul li.mailbox.collection.image.selected span.name {
-	background-position: 7px -2408px;
+#files-folder-list ul li.mailbox.collection.video .name,
+#files-folder-list ul li.mailbox.collection.video.selected .name {
+	background-position: 7px -2387px;
 }
 
-#files-folder-list ul li.mailbox.collection.document span.name,
-#files-folder-list ul li.mailbox.collection.document.selected span.name {
-	background-position: 7px -2432px;
+#files-folder-list ul li.mailbox.collection.image .name,
+#files-folder-list ul li.mailbox.collection.image.selected .name {
+	background-position: 7px -2411px;
 }
 
-#files-folder-list ul li span.name {
-	background-position: 7px 5px;
-}
-
-#files-folder-list ul li.child span.name {
-	background-position: 7px -93px;
+#files-folder-list ul li.mailbox.collection.document .name,
+#files-folder-list ul li.mailbox.collection.document.selected .name {
+	background-position: 7px -2435px;
 }
 
 ul.toolbarmenu li span.saveas {
