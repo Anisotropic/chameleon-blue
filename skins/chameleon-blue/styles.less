@@ -1880,7 +1880,7 @@ a.button.changeformat.text.selected span.icon {
 .attachmentslist li.text,
 #filelist tbody td.filename.ascii span,
 #filelist tbody td.filename.text_plain span {
-	background-position: 0 -416px;
+	background-position: 0 -418px;
 }
 
 .attachmentslist li.ics,
@@ -2170,6 +2170,7 @@ a.button.changeformat.text.selected span.icon {
 #calendars .searchresults .boxtitle,
 #tasklistsbox .searchresults .boxtitle,
 #directorylist .searchresults .boxtitle,
+#files-folder-list .searchresults .boxtitle,
 .notesview #notebooksbox .searchresults .boxtitle {
 	background: @title-background;
 	padding: 7px 8px 6px;
@@ -2177,6 +2178,7 @@ a.button.changeformat.text.selected span.icon {
 
 #calendars .searchresults,
 #tasklistsbox .searchresults,
+#files-folder-list .searchresults,
 .notesview #notebooksbox .searchresults {
 	margin-top: 0;
 }
@@ -2296,11 +2298,16 @@ a.button.changeformat.text.selected span.icon {
 #calendars .treelist div.focusview a.quickview,
 #tasklistsbox .treelist div.focusview a.quickview,
 .notesview #notebooksbox .treelist div a.remove,
+#files-folder-list li a.subscription,
 #directorylistbox ul.treelist div span.remove {
 	background-image: url(images/listicons.png);
 	background-position: -100px 0;
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+#files-folder-list li a.subscription {
+  margin-top: 3px;
 }
 
 #directorylistbox ul.treelist div span.subscribed,
@@ -2358,6 +2365,14 @@ a.button.changeformat.text.selected span.icon {
 #directorylistbox ul.treelist div.subscribed.partial span.subscribed,
 #directorylistbox ul.treelist div.subscribed.partial span.subscribed:focus {
 	background-position: -4px -2674px;
+}
+
+#files-folder-list li a.subscription {
+  background-position: -4px -2605px;
+}
+
+#files-folder-list li a.subscription.subscribed {
+  background-position: -26px -2605px;
 }
 
 #calendars .treelist div:hover a.remove,
@@ -3812,4 +3827,3 @@ div.contextmenu ul.iconized li a.cmd_group-rename span.icon {
 div.contextmenu ul.iconized li:hover a.active.cmd_group-rename span.icon {
 	background-position: 0 -2954px;
 }
-
