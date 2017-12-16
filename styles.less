@@ -201,7 +201,7 @@ body.login #header {
 }
 
 #toplogo {
-	margin-top: 8px;
+	margin-top: 4px;
 	margin-left: 18px;
 	paddin: 0;
 	float: left;
@@ -282,7 +282,7 @@ body.login #header {
 }
 
 .ktaskmenu:focus {
-	background-color: @focus-color;
+	background-color: @menu-focus-color;
 }
 
 .ktaskmenu .activetask {
@@ -333,7 +333,8 @@ body.login #header {
 }
 
 #ktaskpopup a:hover {
-	color: @hightlight-text;
+	color: @menu-highlight-text;
+	background-color: @menu-highlight-color;
 }
 
 #ktaskpopup a .button-inner {
@@ -477,6 +478,8 @@ html.mozilla #mailboxlist > li:first-child,
 #messagelistfooter,
 #preferences-frame,
 #helpcontentframe,
+.widescreen #mailview-bottom,
+.widescreen #messagelistheader,
 #mailview-bottom {
 	border-radius: 0;
 	border: none;
@@ -513,9 +516,10 @@ h3.boxtitle,
 .ui-widget-header,
 .fc-widget-header,
 .records-table thead th,
-.ui-datepicker-calendar thead th,
 .ui-widget-header select,
 #taskselector li,
+#prefs-title,
+#filter-title,
 a.menuselector,
 ul.toolbarmenu li.separator label,
 .ui-dialog-buttonpane a.dropdown-link {
@@ -578,6 +582,7 @@ ul.listing li.selected ul {
 	text-shadow: none;
 	margin-top: 2px;
 	margin-bottom: 2px;
+	padding: 4px 8px;
 }
 
 .listing tbody td {
@@ -647,7 +652,15 @@ table.listing tr.droptarget td {
 
 .mce-panel {
 	background: #f9f9f9 !important;
-	border-bottom: 1px solid #ededed !important;
+}
+
+.mce-container .mce-btn-small {
+	background-color: transparent !important;
+}
+
+.mce-container .mce-btn-small:hover,
+.mce-container .mce-btn-small:focus {
+	background-color: #eee !important;
 }
 
 .listbox .listitem.selected,
@@ -729,8 +742,6 @@ ul.toolbarmenu li a {
 	text-shadow: none;
 }
 
-.ktaskmenu .popupmenu a:hover,
-.ktaskmenu .popupmenu a:focus,
 #rcmKSearchpane ul li.selected,
 .records-table.focus tr.selected td,
 .googie_list td.googie_list_onhover,
@@ -771,7 +782,8 @@ select.decorated option[selected='selected'],
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
 	padding: 5px;
 	background: #fff;
 	border: 1px solid #dbdbdb;
@@ -784,19 +796,22 @@ input[type="password"],
 .searchbox input,
 #quicksearchbar input,
 body .tagedit-list,
-textarea {
+textarea,
+select {
 	border-radius: 1px;
 	border: 1px solid #dbdbdb;
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	background: #fff;
+	color: inherit;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input.button:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
 	border-color: @outline-color !important;
 	box-shadow: none;
 	-moz-box-shadow: none;
@@ -972,6 +987,7 @@ ul.toolbarmenu li span.icon,
 #sections-table tbody td,
 #settings-sections .listitem a,
 #settings-sections .tablink a,
+.widescreen #messagelistheader .listmenu,
 ul.treelist li div.treetoggle,
 ul.toolbarmenu li span.icon.taskadd,
 ul.toolbarmenu li .appendnote span.icon,
@@ -979,6 +995,11 @@ ul.toolbarmenu li span.icon.tagadd,
 ul.toolbarmenu li span.icon.tagremove,
 ul.toolbarmenu li span.icon.tagremoveall {
 	background-image: url(images/listicons.png);
+}
+
+.widescreen #messagelistheader .listmenu {
+	background-position: 0 -976px;
+	line-height: 22px;
 }
 
 .messagelist tbody .attachment span.ical {
@@ -992,12 +1013,6 @@ ul.toolbarmenu li span.icon.tagremoveall {
 
 .messagelist tr.selected td.flag span.flagged {
 	background-position: 0px -2923px;
-}
-
-.messagelist tr.flagged th,
-.messagelist tr.flagged td,
-.messagelist tr.flagged td a {
-    color: @main-color;
 }
 
 #settings-sections .filter a {
@@ -1067,21 +1082,21 @@ ul.toolbarmenu li span.icon.print {
 ul.toolbarmenu li span.icon.tagadd {
 	background-position: 0 -3190px;
 }
-ul.toolbarmenu li:hover span.icon.tagadd {
+ul.toolbarmenu li:hover a.active span.icon.tagadd {
 	background-position: 0 -3250px;
 }
 
 ul.toolbarmenu li span.icon.tagremove {
 	background-position: 0 -3210px;
 }
-ul.toolbarmenu li:hover span.icon.tagremove {
+ul.toolbarmenu li:hover a.active span.icon.tagremove {
 	background-position: 0 -3270px;
 }
 
 ul.toolbarmenu li span.icon.tagremoveall {
 	background-position: 0 -3230px;
 }
-ul.toolbarmenu li:hover span.icon.tagremoveall {
+ul.toolbarmenu li:hover a.active span.icon.tagremoveall {
 	background-position: 0 -3290px;
 }
 
@@ -1299,7 +1314,6 @@ table.propform td.title {
 }
 
 #contactsectioncontact .contactfieldgroup .row {
-	margin: -4px 0 4px;
 }
 
 .contactfieldgroup .contactfieldlabel {
@@ -1366,7 +1380,7 @@ a.menuselector .handle {
 #delegatefolders tbody td {
 	border-bottom: 1px solid #ededed;
 	background-color: #f9f9f9;
-	padding: 5px;
+	padding: 4px;
 }
 
 #foldersubscriptions td.mailbox {
@@ -1376,10 +1390,11 @@ a.menuselector .handle {
 #foldersubscriptions thead th,
 #delegatefolders thead th {
 	border-bottom: 1px solid #ededed;
-	background-color: @header-background;
+	background-color: darken(@header-background, 2%);
 	color: @header-text;
 	text-transform: uppercase;
-	padding: 5px;
+	padding: 4px;
+	height: 20px;
 }
 
 a.menuselector:focus,
@@ -1530,6 +1545,10 @@ a.button span.icon,
 
 .pagenav .countdisplay {
 	text-shadow: none;
+}
+
+.pagenav .pagejumper {
+	background: #fff;
 }
 
 .pagenavbuttons {
@@ -1691,6 +1710,11 @@ a.button.changeformat.text.selected span.icon {
 	padding-top: 0.5em;
 }
 
+.popupmenu > .buttons {
+	height: 35px;
+	border-top: 0;
+}
+
 
 /*** message bar ***/
 
@@ -1775,32 +1799,32 @@ a.button.changeformat.text.selected span.icon {
 	background-image: url(images/filetypes.png);
 }
 
-#filelist tbody td.filename span {
+.filelist tbody td.filename span {
 	background-image: url(images/filetypes.png) !important;
-	background-position: 0px 0px;
+	background-position: 0 0;
 	padding: 5px 2px 6px 30px;
 }
 
 .attachmentslist li.pdf,
-#filelist tbody td.filename.pdf span,
-#filelist tbody td.filename.application_pdf span {
+.filelist tbody td.filename.pdf span,
+.filelist tbody td.filename.application_pdf span {
 	background-position: 0 -26px;
 }
 
 .attachmentslist li.doc,
 .attachmentslist li.docx,
 .attachmentslist li.msword,
-#filelist tbody td.filename.application_vnd_ms_word span,
-#filelist tbody td.filename.application_msword span {
+.filelist tbody td.filename.application_vnd_ms_word span,
+.filelist tbody td.filename.application_msword span {
 	background-position: 0 -52px;
 }
 
 .attachmentslist li.xls,
 .attachmentslist li.xlsx,
 .attachmentslist li.msexcel,
-#filelist tbody td.filename.application_vnd_ms_excel span,
-#filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet span,
-#filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet_template span {
+.filelist tbody td.filename.application_vnd_ms_excel span,
+.filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet span,
+.filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet_template span {
 	background-position: 0 -104px;
 }
 
@@ -1812,32 +1836,32 @@ a.button.changeformat.text.selected span.icon {
 }
 
 .attachmentslist li.odt,
-#filelist tbody td.filename.application_vnd_oasis_opendocument_text span {
+.filelist tbody td.filename.application_vnd_oasis_opendocument_text span {
 	background-position: 0 -78px;
 }
 
 .attachmentslist li.odp,
-#filelist tbody td.filename.application_vnd_oasis_opendocument_presentation span,
-#filelist tbody td.filename.application_vnd_oasis_opendocument_presentation_template span {
+.filelist tbody td.filename.application_vnd_oasis_opendocument_presentation span,
+.filelist tbody td.filename.application_vnd_oasis_opendocument_presentation_template span {
 	background-position: 0 -182px;
 }
 
 .attachmentslist li.gz,
 .attachmentslist li.zip,
 .attachmentslist li.rar,
-#filelist tbody td.filename.tar span,
-#filelist tbody td.filename.application_zip span,
-#filelist tbody td.filename.application_x_7z_compressed span,
-#filelist tbody td.filename.application_x_ace span,
-#filelist tbody td.filename.application_x_arc span,
-#filelist tbody td.filename.application_x_arj span,
-#filelist tbody td.filename.application_x_bzip_compressed_tar span,
-#filelist tbody td.filename.application_x_lha span,
-#filelist tbody td.filename.application_x_rar span,
-#filelist tbody td.filename.application_x_tarz span,
-#filelist tbody td.filename.application_x_tzo span,
-#filelist tbody td.filename.application_x_zip span,
-#filelist tbody td.filename.application_x_zoo span {
+.filelist tbody td.filename.tar span,
+.filelist tbody td.filename.application_zip span,
+.filelist tbody td.filename.application_x_7z_compressed span,
+.filelist tbody td.filename.application_x_ace span,
+.filelist tbody td.filename.application_x_arc span,
+.filelist tbody td.filename.application_x_arj span,
+.filelist tbody td.filename.application_x_bzip_compressed_tar span,
+.filelist tbody td.filename.application_x_lha span,
+.filelist tbody td.filename.application_x_rar span,
+.filelist tbody td.filename.application_x_tarz span,
+.filelist tbody td.filename.application_x_tzo span,
+.filelist tbody td.filename.application_x_zip span,
+.filelist tbody td.filename.application_x_zoo span {
 	background-position: 0 -234px;
 }
 
@@ -1845,83 +1869,82 @@ a.button.changeformat.text.selected span.icon {
 .attachmentslist li.jpeg,
 .attachmentslist li.png,
 .attachmentslist li.image,
-#filelist tbody td.filename.image span,
-#filelist tbody td.filename.image_png span,
-#filelist tbody td.filename.image_svg_xml span,
-#filelist tbody td.filename.image_jpeg span,
-#filelist tbody td.filename.image_jpeg2000 span,
-#filelist tbody td.filename.application_vnd_stardivision_draw span,
-#filelist tbody td.filename.application_vnd_sun_xml_draw span,
-#filelist tbody td.filename.application_vnd_sun_xml_draw_template span {
+.filelist tbody td.filename.image span,
+.filelist tbody td.filename.image_png span,
+.filelist tbody td.filename.image_svg_xml span,
+.filelist tbody td.filename.image_jpeg span,
+.filelist tbody td.filename.image_jpeg2000 span,
+.filelist tbody td.filename.application_vnd_stardivision_draw span,
+.filelist tbody td.filename.application_vnd_sun_xml_draw span,
+.filelist tbody td.filename.application_vnd_sun_xml_draw_template span {
 	background-position: 0 -208px;
 }
 
 .attachmentslist li.sig,
 .attachmentslist li.pgp-signature,
 .attachmentslist li.pkcs7-signature,
-#filelist tbody td.filename.application_pgp_keys span,
-#filelist tbody td.filename.application_pkcs7_mime span {
+.filelist tbody td.filename.application_pgp_keys span,
+.filelist tbody td.filename.application_pkcs7_mime span {
 	background-position: 0 -260px;
 }
 
 .attachmentslist li.m4p,
 .attachmentslist li.mp3,
 .attachmentslist li.audio,
-#filelist tbody td.filename.audio span {
+.filelist tbody td.filename.audio span {
 	background-position: 0 -286px;
 }
 
 .attachmentslist li.video,
-#filelist tbody td.filename.video span {
+.filelist tbody td.filename.video span {
 	background-position: 0 -338px;
 }
 
 .attachmentslist li.txt,
 .attachmentslist li.text,
-#filelist tbody td.filename.ascii span,
-#filelist tbody td.filename.text_plain span {
+.filelist tbody td.filename.ascii span,
+.filelist tbody td.filename.text_plain span {
 	background-position: 0 -418px;
 }
 
 .attachmentslist li.ics,
 .attachmentslist li.calendar,
-#filelist tbody td.filename.vcalendar span {
+.filelist tbody td.filename.vcalendar span {
 	background-position: 0 -364px;
 }
 
 .attachmentslist li.vcard,
-#filelist tbody td.filename.vcard span,
-#filelist tbody td.filename.text_x_vcard span {
+.filelist tbody td.filename.vcard span,
+.filelist tbody td.filename.text_x_vcard span {
 	background-position: 0 -390px;
 }
 
 .attachmentslist li.html,
-#filelist tbody td.filename.text_html span {
+.filelist tbody td.filename.text_html span {
 	background-position: 0 -442px;
 }
 
 .attachmentslist li.css,
-#filelist tbody td.filename.style_css span {
+.filelist tbody td.filename.style_css span {
 	background-position: 0 -468px;
 }
 
 .attachmentslist li.csv,
-#filelist tbody td.filename.text_csv span {
+.filelist tbody td.filename.text_csv span {
 	background-position: 0 -494px;
 }
 
 .attachmentslist li.eml,
 .attachmentslist li.rfc822,
-#filelist tbody td.filename.message_rfc822 span {
+.filelist tbody td.filename.message_rfc822 span {
 	background-position: 0 -520px;
 }
 
 .attachmentslist li.eps,
 .attachmentslist li.svg,
-#filelist tbody td.filename.image_x_eps span {
+.filelist tbody td.filename.image_x_eps span {
 	background-position: 0 -546px;
 }
-
 
 .attachmentslist li a.drop {
 	background-position: center -1570px;
@@ -2247,7 +2270,7 @@ a.button.changeformat.text.selected span.icon {
 }
 
 #directorylist li.addressbook.shared.readonly {
-	background-position: 97% -2220px;
+	background-position: 97% -2217px;
 }
 #tasklists li.shared.readonly span.listname,
 #calendars .treelist div.shared.readonly span.calname {
@@ -2699,24 +2722,24 @@ a.button.changeformat.text.selected span.icon {
 	line-height: 18px;
 }
 
-#schedule-freebusy-times td.free,
+#schedule-freebusy-times td div.free,
 .availability img.availabilityicon.free {
 	background-color: #adce4a;
 }
 
-#schedule-freebusy-times td.busy,
+#schedule-freebusy-times td div.busy,
 .availability img.availabilityicon.busy {
 	background-color: #da4340;
 }
 
-#schedule-freebusy-times td.tentative,
+#schedule-freebusy-times td div.tentative,
 .availability img.availabilityicon.tentative {
 	background-color: #8c699f;
 }
 
-#schedule-freebusy-times td.all-busy,
-#schedule-freebusy-times td.all-tentative,
-#schedule-freebusy-times td.all-out-of-office {
+#schedule-freebusy-times td div.all-busy,
+#schedule-freebusy-times td div.all-tentative,
+#schedule-freebusy-times td div.all-out-of-office {
 	background-image: url('images/freebusy-colors.png');
 }
 
@@ -2727,6 +2750,7 @@ a.button.changeformat.text.selected span.icon {
 .attendees-list .attendee,
 .event-attendees span.organizer,
 .edit-attendees-table td.confirmstate span,
+.tasklistview .edit-attendees-table td.confirmstate span,
 div.calendar-invitebox .rsvp-status.declined,
 div.calendar-invitebox .rsvp-status.tentative,
 div.calendar-invitebox .rsvp-status.accepted,
@@ -2735,6 +2759,8 @@ div.calendar-invitebox .rsvp-status.needs-action,
 div.tasklist-invitebox .rsvp-status.declined,
 div.tasklist-invitebox .rsvp-status.tentative,
 div.tasklist-invitebox .rsvp-status.accepted,
+div.tasklist-invitebox .rsvp-status.in-process,
+div.tasklist-invitebox .rsvp-status.completed,
 div.tasklist-invitebox .rsvp-status.delegated,
 div.tasklist-invitebox .rsvp-status.needs-action {
 	background-image: url(images/attendee-status.png);
@@ -2754,13 +2780,12 @@ div.tasklist-invitebox .rsvp-status.needs-action {
 	line-height: 15px;
 }
 
-.attendees-list div.attendee.spacer,
-#schedule-freebusy-times tr.spacer td {
+.attendees-list div.attendee.spacer {
 	line-height: 5px;
 }
 
-#schedule-freebusy-times td {
-	line-height: 15px;
+#schedule-freebusy-times tbody td {
+	height: 23px;
 }
 
 .attendees-list a.attendee-role-toggle {
@@ -2824,7 +2849,8 @@ div.calendar-invitebox,
 div.tasklist-invitebox {
 	position: relative;
 	background-image: none;
-	margin: 0 0 8px 0;
+	margin: 8px;
+	margin-bottom: 0;
 }
 
 div.calendar-invitebox:before,
@@ -3037,6 +3063,16 @@ body.calendaritipattend #message {
 #taskstoolbar a.button.newtask {
 	background-image: url(images/buttons.png);
 	background-position: center -2184px;
+}
+
+#taskstoolbar a.button.export {
+	background-image: url(images/buttons.png);
+	background-position: center -3158px;
+}
+
+#taskstoolbar a.button.import {
+	background-image: url(images/buttons.png);
+	background-position: center -3197px;
 }
 
 #tasklistsbox .treelist li .treetoggle {
@@ -3306,6 +3342,10 @@ ul.toolbarmenu li:hover a.active span.saveas {
 	line-height: 26px;
 }
 
+.filelist tr > .mtime {
+	width: 150px;
+}
+
 table.propform td.source.selected {
 	background-color: fade(@main-color, 10%);
 }
@@ -3331,11 +3371,11 @@ table.propform td.source.selected {
 }
 
 .filelist tbody tr.session > td.options span {
-	background-position: -25px -2268px;
+	background-position: 0 3658px;
 }
 
 .filelist tbody tr.session.invited > td.options span {
-	background-position: -25px -2244px;
+	background-position: 0 -3623px;
 }
 
 .filelist tbody tr.session.owner > td.options span {
@@ -3652,6 +3692,10 @@ div.actionrow:hover {
 	border-width: 1px;
 }
 
+#filter-form input.error,
+#filter-form textarea.error {
+	background-color: #ffffc4;
+}
 
 /*** Kolab Notes plugin ***/
 
@@ -3694,6 +3738,9 @@ div.messagetasklinks,
 div.kolabmessagenotes {
 	border: 0;
 	background-color: #f9f9f9;
+	margin: 8px;
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
 
@@ -3771,6 +3818,7 @@ div.kolabmessagenotes {
 /*** Contextmenu plugin ***/
 
 #folder-selector li a span,
+#addressgroup-selector li a span,
 #addressbook-selector li a span,
 div.contextmenu ul.iconized li a.readfolder span.icon,
 div.contextmenu ul.iconized li a.openfolder span.icon,
@@ -3837,34 +3885,44 @@ ul.rcmcontextmenu .tasklist-create-from-mail a span {
 	background-position: 5px -119px;
 }
 
+#folder-selector li.inbox span,
 #folder-selector li a.inbox span {
 	background-position: 4px -215px;
 }
 
+#folder-selector li.drafts span,
 #folder-selector li a.drafts span {
 	background-position: 4px -263px;
 }
 
+#folder-selector li.sent span,
 #folder-selector li a.sent span {
 	background-position: 4px -311px;
 }
 
+#folder-selector li.junk span,
 #folder-selector li a.junk span {
 	background-position: 4px -359px;
 }
 
+#folder-selector li.trash span,
 #folder-selector li a.trash span {
-	background-position: 4px -407px;
+	background-position: 4px -408px;
 }
 
 #addressbook-selector li a.addressbook span {
 	text-indent: 4px;
-	background-position: 2px -792px;
+	background-position: 2px -769px;
 }
 
+#addressbook-selector li:hover a.addressbook span {
+	background-position: 2px -793px;
+}
+
+#addressgroup-selector li a.contactgroup span,
 #addressbook-selector li a.contactgroup span {
 	text-indent: 10px;
-	background-position: 10px -1580px;
+	background-position: 10px -1556px;
 }
 
 div.contextmenu ul.iconized li a.compose span.icon {
@@ -3895,4 +3953,13 @@ div.contextmenu ul.iconized li a.cmd_group-rename span.icon {
 
 div.contextmenu ul.iconized li:hover a.active.cmd_group-rename span.icon {
 	background-position: 0 -2954px;
+}
+
+/*** Enigma plugin ***/
+
+#mainscreen.enigma {
+	top: 78px;
+}
+#keystoolbar {
+	top: -14px;
 }
