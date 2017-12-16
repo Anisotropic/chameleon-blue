@@ -22,7 +22,7 @@
 	</div>
 <roundcube:elseif condition="env:extwin" />
 	<div class="topright">
-		<roundcube:button command="close" label="close" class="closelink" />
+		<roundcube:button command="close" type="link" label="close" class="closelink" />
 	</div>
 <roundcube:endif />
 
@@ -34,11 +34,11 @@
 <div id="ktaskpopup" class="ktaskmenu" role="navigation" aria-labelledby="aria-label-tasknav">
 <h2 id="aria-label-tasknav" class="voice"><roundcube:label name="arialabeltasknav" /></h2>
 	<div id="application-tasks-menu" class="popupmenu">
-		<roundcube:button command="mail" label="mail" class="button-mail" classSel="button-mail button-selected" innerClass="button-inner" />
-		<roundcube:button command="addressbook" label="addressbook" class="button-addressbook" classSel="button-addressbook button-selected" innerClass="button-inner" />
+		<roundcube:button type="link" command="mail" label="mail" class="button-mail" classSel="button-mail button-selected" innerClass="button-inner" />
+		<roundcube:button type="link" command="addressbook" label="addressbook" class="button-addressbook" classSel="button-addressbook button-selected" innerClass="button-inner" />
 		<roundcube:container name="taskbar" id="application-tasks-menu" />
-		<roundcube:button command="settings" label="settings" class="button-settings" classSel="button-settings button-selected" innerClass="button-inner" />
-		<roundcube:button command="logout" label="logout" class="button-logout" classSel="button-logout button-selected" innerClass="button-inner" />
+		<roundcube:button type="link" command="settings" label="settings" class="button-settings" classSel="button-settings button-selected" innerClass="button-inner" />
+		<roundcube:button type="link" command="logout" label="logout" class="button-logout" classSel="button-logout button-selected" innerClass="button-inner" />
 	</div>
 </div>
 
