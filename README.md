@@ -6,8 +6,8 @@ Chameleon Blue (roundcube skin)
 Chameleon Blue basically is a blue customization of [Chameleon](https://git.kolab.org/diffusion/RSC/), also know as Kolab Enterprise Web Client Skin.
 
 
-![Preview of Chameleon Blue](screenshots/preview.png "Preview of Chameleon Blue")
 
+![Preview of Chameleon Blue](screenshots/preview.png "Preview of Chameleon Blue")
 
 Kolab Enterprise Web Client Skin
 ================================
