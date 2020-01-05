@@ -14,10 +14,12 @@
 
 @box-padding: 12px;
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,900&subset=latin,latin-ext);
+
 body {
 	background: #e7e7e7 url(images/bg.gif) 0 0 repeat-x;
 	color: @text-color;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucid Sans", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 12px;
 }
 
@@ -174,6 +176,7 @@ body.login #header {
 #mainscreencontent,
 #tasksview,
 .tasklistview #tagsbox,
+#tasklistbox,
 #folderlistbox,
 #filelistcontainer,
 #fileinfobox,
@@ -211,6 +214,15 @@ body.login #header {
 	padding: 0 15px;
 	color: #d9d9d9;
 	line-height: 60px;
+}
+
+#header span.user_display_hostname{
+	color: rgb(255, 255, 255);
+	position: absolute;
+	left: 65px;
+	font-size: 2em;
+	font-weight: 100;
+	top: 25px;
 }
 
 #header .aboutlinks {
@@ -435,6 +447,10 @@ body.login #header {
 	background-position: -5px -2959px;
 }
 
+#ktaskpopup a.button-chat .button-inner {
+	background-image: none; /* TODO */
+}
+
 .ktaskmenu .dropdownhandle {
 	position: absolute;
 	display: block;
@@ -614,7 +630,8 @@ ul.listing.focus .listitem.focused span {
 	outline: none;
 }
 
-ul.treelist li.selected a:focus {
+ul.treelist li.selected > div > a:focus,
+ul.treelist li.selected > a:focus {
 	color: @list-selected-text !important;
 }
 
@@ -1389,7 +1406,7 @@ a.menuselector .handle {
 
 #foldersubscriptions thead th,
 #delegatefolders thead th {
-	border-bottom: 1px solid #ededed;
+	border-bottom: 1px solid #fff;
 	background-color: darken(@header-background, 2%);
 	color: @header-text;
 	text-transform: uppercase;
@@ -1814,6 +1831,8 @@ a.button.changeformat.text.selected span.icon {
 .attachmentslist li.doc,
 .attachmentslist li.docx,
 .attachmentslist li.msword,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_wordprocessingml_document span,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_wordprocessingml_template span,
 .filelist tbody td.filename.application_vnd_ms_word span,
 .filelist tbody td.filename.application_msword span {
 	background-position: 0 -52px;
@@ -1823,6 +1842,8 @@ a.button.changeformat.text.selected span.icon {
 .attachmentslist li.xlsx,
 .attachmentslist li.msexcel,
 .filelist tbody td.filename.application_vnd_ms_excel span,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_spreadsheetml_sheet span,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_spreadsheetml_template span,
 .filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet span,
 .filelist tbody td.filename.application_vnd_oasis_opendocument_spreadsheet_template span {
 	background-position: 0 -104px;
@@ -1831,7 +1852,10 @@ a.button.changeformat.text.selected span.icon {
 .attachmentslist li.ppt,
 .attachmentslist li.pptx,
 .attachmentslist li.mspowerpoint,
-#filelist tbody td.filename.application_vnd_ms_powerpoint span {
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_presentationml_presentation span,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_presentationml_template span,
+.filelist tbody td.filename.application_vnd_openxmlformats_officedocument_presentationml_slideshow span,
+.filelist tbody td.filename.application_vnd_ms_powerpoint span {
 	background-position: 0 -156px;
 }
 
@@ -2223,12 +2247,32 @@ a.button.changeformat.text.selected span.icon {
 	color: @text-color;
 }
 
-#tasklistsbox .treelist li.selected > div span.listname,
-#calendars .treelist li.selected > div span.calname,
-#directorylist li.addressbook.selected > div a,
-.notesview #notebooks li.selected > div .listname,
-#files-folder-list ul li.selected > span.name {
+.treelist li > div > a {
+	color: @list-text !important;
+}
+
+.treelist li > div.virtual > a {
+	color: #aaa !important;
+}
+
+.treelist li > div > a,
+#files-folder-list ul li > .name {
+	top: 3px !important;
+}
+
+.treelist li.selected > div > a,
+#files-folder-list ul li.selected > .name {
 	color: @list-selected-text !important;
+}
+
+.treelist li.selected > div > a,
+#files-folder-list ul li.selected > .name {
+	color: @list-selected-text !important;
+}
+
+html.mozilla .treelist li > div > input {
+	top: 2px !important;
+	left: 15px !important;
 }
 
 #directorylist li.addressbook.readonly {
@@ -2542,7 +2586,7 @@ a.button.changeformat.text.selected span.icon {
 	height: 47px;
 }
 
-.calendarmain .fc-content {
+#calendar > .fc-content {
 	top: 47px;
 }
 
@@ -2566,40 +2610,57 @@ a.button.changeformat.text.selected span.icon {
 	background-position: center -810px;
 }
 
+.calendarmain #calendar .fc-left .fc-button,
 .calendarmain #calendar .fc-header-left .fc-button {
 	background-image: url(images/buttons.png);
 }
 
+.calendarmain #calendar .fc-left .fc-agendaDay-button,
 .calendarmain #calendar .fc-header-left .fc-button-agendaDay {
 	background-position: center -1864px;
 }
 
+.calendarmain #calendar .fc-left .fc-agendaDay-button.fc-state-active,
 .calendarmain #calendar .fc-header-left .fc-button-agendaDay.fc-state-active {
 	background-position: center -1904px;
 }
 
+.calendarmain #calendar .fc-left .fc-agendaWeek-button,
 .calendarmain #calendar .fc-header-left .fc-button-agendaWeek {
 	background-position: center -1944px;
 }
 
+.calendarmain #calendar .fc-left .fc-agendaWeek-button.fc-state-active,
 .calendarmain #calendar .fc-header-left .fc-button-agendaWeek.fc-state-active {
 	background-position: center -1984px;
 }
 
+.calendarmain #calendar .fc-left .fc-month-button,
 .calendarmain #calendar .fc-header-left .fc-button-month {
 	background-position: center -2024px;
 }
 
+.calendarmain #calendar .fc-left .fc-month-button.fc-state-active,
 .calendarmain #calendar .fc-header-left .fc-button-month.fc-state-active {
 	background-position: center -2064px;
 }
 
+.calendarmain #calendar .fc-left .fc-list-button,
 .calendarmain #calendar .fc-header-left .fc-button-table {
 	background-position: center -2104px;
 }
 
+.calendarmain #calendar .fc-left .fc-list-button.fc-state-active,
 .calendarmain #calendar .fc-header-left .fc-button-table.fc-state-active {
 	background-position: center -2144px;
+}
+
+.calendarmain #calendar .fc-toolbar.fc-header-toolbar {
+	margin-bottom: 16px;
+}
+
+.calendarmain #calendar .fc-header-toolbar .fc-right {
+	padding-top: 1px;
 }
 
 .calendarmain #calendar .fc-header-right {
@@ -2642,10 +2703,25 @@ a.button.changeformat.text.selected span.icon {
 
 .fc-view thead th.fc-widget-header {
 	color: @text-color;
+	padding: 9px 0;
 }
 
 .fc-view-table {
 	border: none;
+}
+
+tbody.fc-body > tr > .fc-widget-content,
+.fc-head-container,
+.fc-list-view {
+	border: 0 !important;
+}
+
+.fc-head-container {
+	border-bottom: 1px solid #ddd !important;
+}
+
+.fc-day-number {
+	/*color: #888;*/
 }
 
 .calendarmain .fc-view-table tr.fc-event td {
@@ -2661,7 +2737,9 @@ a.button.changeformat.text.selected span.icon {
 	background: @header-background;
 	border-radius: 0;
 	border: none;
-	padding: 9px 8px;
+	padding: 0 8px;
+	height: 43px;
+	line-height: 43px;
 }
 
 #agendaoptions label {
