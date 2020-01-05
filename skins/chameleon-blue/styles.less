@@ -14,10 +14,12 @@
 
 @box-padding: 12px;
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,900&subset=latin,latin-ext);
+
 body {
 	background: #e7e7e7 url(images/bg.gif) 0 0 repeat-x;
 	color: @text-color;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucid Sans", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 12px;
 }
 
@@ -211,6 +213,15 @@ body.login #header {
 	padding: 0 15px;
 	color: #d9d9d9;
 	line-height: 60px;
+}
+
+#header span.user_display_hostname{
+	color: rgb(255, 255, 255);
+	position: absolute;
+	left: 65px;
+	font-size: 2em;
+	font-weight: 100;
+	top: 25px;
 }
 
 #header .aboutlinks {
